@@ -1,0 +1,53 @@
+{
+    "base_url": "http://mphim.net/",
+    "fields": {
+        "country": {
+            "xpath": "//span[@id='bs_country']/a//text()"
+        },
+        "description": {
+            "xpath": "//div[@id='l']/div[@class='prpt hrecipe']/div[@class='entry']/p"
+        },
+        "director": {
+            "xpath": "//text()[contains(.,'\u0110\u1ea1o di\u1ec5n:')]/following-sibling::*//a//text()"
+        },
+        "film_genre": {
+            "xpath": "//text()[contains(.,'Th\u1ec3 lo\u1ea1i:')]/following-sibling::*//a/text()"
+        },
+        "film_star": {
+            "xpath": "//text()[contains(.,'Di\u1ec5n vi\u00ean:')]/following-sibling::*//a/text()"
+        },
+        "film_status": {
+            "xpath": "//text()[contains(.,'Th\u1eddi l\u01b0\u1ee3ng:')]/following-sibling::span[1]//text()"
+        },
+        "film_type": {
+            "re": "\\d+",
+            "xpath": "//text()[contains(.,'Th\u1eddi l\u01b0\u1ee3ng:')]/following-sibling::span[1]//text()[contains(.,'t\u1eadp')]"
+        },
+        "image_poster": {
+            "xpath": "//a/img[@class='photo']/@src"
+        },
+        "name_en": {
+            "re": "-(.*)-",
+            "xpath": "//h1[@class='title font-1']//text()"
+        },
+        "name_vn": {
+            "re": "(.*)-.*- \\d+",
+            "xpath": "//h1[@class='title font-1']//text()"
+        },
+        "product_name": "mphim",
+        "sub": {
+            "xpath": "//text()[contains(.,'Th\u1eddi l\u01b0\u1ee3ng:')]/following-sibling::span[contains(.,'Ph\u1ee5 \u0111\u1ec1')]//text()"
+        },
+        "year": {
+            "xpath": "//text()[contains(.,'N\u0103m ph\u00e1t h\u00e0nh:')]/following-sibling::span[1]//text()"
+        }
+    },
+    "rules": [
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//div[@id='menu']//a\")), follow=True, )",
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//div[@id='l']/div[@class='paging']/a\")), follow=True)",
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//div[@id='l']/ul[@class='list_m']//a\")), callback='parse_product')"
+    ],
+    "start_urls": [
+        "http://mphim.net/"
+    ]
+}

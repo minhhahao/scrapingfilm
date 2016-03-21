@@ -1,0 +1,57 @@
+{
+    "base_url": "http://bilutv.com/",
+    "fields": {
+        "country": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., 'Qu\u1ed1c gia')]//a//text()"
+        },
+        "description": {
+            "xpath": "//div[@class='film-content']/p"
+        },
+        "director": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., '\u0110\u1ea1o di\u1ec5n')]//a//text()"
+        },
+        "film_genre": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., 'Th\u1ec3 lo\u1ea1i')]//a//text()"
+        },
+        "film_star": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., 'Di\u1ec5n vi\u00ean')]//a//text()"
+        },
+        "film_status": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., '\u0110ang ph\u00e1t')]/strong/text()"
+        },
+        "film_type": {
+            "re": "\\d+",
+            "xpath": "//ul[@class='meta-data']/li[contains(., '\u0110ang ph\u00e1t')]//strong//text()"
+        },
+        "image_poster": {
+            "xpath": "//div[@class='poster']//img/@src"
+        },
+        "ishd": {
+            "xpath": "//div[@class='keywords']/h4[contains(., 'HD')]//text()"
+        },
+        "name_en": {
+            "xpath": "//h2[@class='real-name']//text()"
+        },
+        "name_vn": {
+            "xpath": "//h1[@class='name']//text()"
+        },
+        "product_name": "bilutv",
+        "sub": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., 'Sub')]//text()"
+        },
+        "tags": {
+            "xpath": "//div[@class='tags']/li[@class='tag-item']//text()"
+        },
+        "year": {
+            "xpath": "//ul[@class='meta-data']/li[contains(., 'N\u0103m xu\u1ea5t b\u1ea3n')]//span/text()"
+        }
+    },
+    "rules": [
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//div[@class='container']/ul/li//a\")), follow=True)",
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//div[@class='pagination']/ul/li/a\")), follow=True)",
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//li[@class='film-item ']/a\")), callback='parse_product')"
+    ],
+    "start_urls": [
+        "http://bilutv.com/"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "base_url": "http://kphim.tv/",
+    "fields": {
+        "country": {
+            "xpath": "//dd[@class='movie-dd dd-country']/a//text()"
+        },
+        "product_name": "kphim"
+
+    },
+    "rules": [
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//ul[@id='movie-carousel-moira']/li/a\")), callback='parse_product')"
+    ],
+    "start_urls": [
+        "http://kphim.tv/theloai/truyen-hinh-thuc-te-z2.html"
+    ]
+}

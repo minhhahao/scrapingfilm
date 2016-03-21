@@ -1,0 +1,54 @@
+{
+    "base_url": "http://vkool.net/",
+    "fields": {
+        "country": {
+            "xpath": "//dd[@class='movie-dd dd-country']/a//text()"
+        },
+        "description": {
+            "xpath": "//article[@class='block-movie-content']/div[@class='content']"
+        },
+        "director": {
+            "xpath": "//dd[@class='movie-dd dd-director']//a[@class='director']//text()"
+        },
+        "film_genre": {
+            "xpath": "//dd[@class='movie-dd dd-cat']/a//text()"
+        },
+        "film_star": {
+            "xpath": "//dd[@class='movie-dd dd-director']//a[@class='actor']//text()"
+        },
+        "film_status": {
+            "xpath": "//dd[@class='movie-dd status']//text()"
+        },
+        "film_type": {
+            "re": "\\d+",
+            "xpath": "//dd[@class='movie-dd status']//text()"
+        },
+        "image_poster": {
+            "xpath": "//div[@class='movie-l-img']/img/@src"
+        },
+        "name_en": {
+            "xpath": "concat(//h1[@class='movie-title']/span[@class='title-2'], //h1[@class='movie-title']/span[@class='title-year'])"
+        },
+        "name_vn": {
+            "xpath": "//h1[@class='movie-title']/span[@class='title-1']//text()"
+        },
+        "product_name": "vkool",
+        "sub": {
+            "xpath": "//dt[contains(./text(), 'Tags')]/following-sibling::dd[1]//text()[contains(.,'sub')]"
+        },
+        "tags": {
+            "xpath": "//dt[contains(./text(), 'Tags')]/following-sibling::dd[1]//a/text()"
+        },
+        "year": {
+            "xpath": "//dt[contains(./text(), 'N\u0103m:')]/following-sibling::dd[1]//a/text()"
+        }
+    },
+    "rules": [
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//ul[@id='mega-menu-1']//a\")), follow=True)",
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//ul[@class='pagination pagination-lg']/li/a\")), follow=True)",
+        "Rule(lxml(allow=('.*'), restrict_xpaths=(\"//ul[@class='list-movie']/li/a\")), callback='parse_product')"
+    ],
+    "start_urls": [
+        "http://vkool.net/"
+    ]
+}
